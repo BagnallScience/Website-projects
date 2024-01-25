@@ -1,0 +1,40 @@
+NEW:
+
+function validateName() {
+    const nameParts = name.value.trim().split(' ');
+    const isValid = nameParts.length >= 2;
+    updateFieldColor(name, isValid);
+    errorElement.innerText = isValid ? '' : 'First and Last names are required.';
+}
+
+function validateCard() {
+    const isValid = luhnAlgorithm(card.value.trim());
+    updateFieldColor(card, isValid);
+    errorElement.innerText = isValid ? '' : 'Invalid credit card number.';
+}
+
+
+
+OLD:
+
+// Validate Name on blur
+function validateName() {
+    const nameParts = name.value.trim().split(' ');
+    if (nameParts.length < 2) {
+        errorElement.innerText = "First and Last names are required.";
+    } else {
+        errorElement.innerText = "";
+    }
+}
+
+// Validate Credit Card on blur
+function validateCard() {
+    if (!luhnAlgorithm(card.value.trim())) {
+        errorElement.innerText = "Invalid credit card number.";
+    } else {
+        errorElement.innerText = "";
+    }
+}
+
+
+
