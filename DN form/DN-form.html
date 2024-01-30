@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
+
 <head>
     <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Title of the document -->
     <title>Form Validation</title>
-    
+
     <!-- Link to external CSS file -->
     <link href="DN-form.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <!-- Container for the form -->
-    <div class="form-body">
-        
+    <div class="form-body" ng-controller="myController">
+
         <!-- Form element with id 'myForm', method 'POST', and class 'form' -->
         <form id="myForm" method="POST" class="form">
             <!-- First input field for 'Name' -->
@@ -22,40 +24,37 @@
                 <br>
                 <!-- Label for 'Name' input -->
                 <label for="name">Name:</label>
-                <!-- Input field for 'Name' with required attribute, onblur event, and placeholder -->
-                <input id="name" name="name" type="text" placeholder="Enter Your Name" required
-                       onblur="validateName()"  title="">
+                <!-- Input field for 'Name' with required attribute, ng-blur event, and placeholder -->
+                <input id="name" name="name" type="text" placeholder="Enter Your Name" required ng-blur="validateName()" title="">
                 <!-- Feedback div for 'Name' input -->
                 <div class="feedback"></div>
             </div>
             <br>
-            
+
             <!-- Second input field for 'Email' -->
             <label for="email">Email:</label>
-            <!-- Input field for 'Email' with required attribute, pattern, and placeholder -->
-            <input id="email" name="email" type="text" placeholder="Enter Your Email" required
-                 onblur="validateEmail()" title="">
+            <!-- Input field for 'Email' with required attribute, ng-blur event, and placeholder -->
+            <input id="email" name="email" type="text" placeholder="Enter Your Email" required ng-blur="validateEmail()" title="">
             <!-- Feedback div for 'Email' input -->
             <div class="feedback"></div>
-            
+
             <!-- Container for 'Card' input and submit button -->
             <div>
                 <div>
                     <br>
                     <!-- Label for 'Card' input -->
                     <label for="card">Card:</label>
-                    <!-- Input field for 'Card' with required attribute, onblur event, and placeholder -->
-                    <input id="card" name="card" type="text" placeholder="Enter a Proxy Credit/ Debit Card Number" required
-                           onblur="validateCard()"  title="">
+                    <!-- Input field for 'Card' with required attribute, ng-blur event, and placeholder -->
+                    <input id="card" name="card" type="text" placeholder="Enter a Proxy Credit/ Debit Card Number" required ng-blur="validateCard()" title="">
                     <!-- Feedback div for 'Card' input -->
                     <div class="feedback"></div>
                 </div>
-                
+
                 <!-- Submit button -->
                 <button type="submit">Submit</button>
             </div>
         </form>
-        
+
         <!-- Container for error messages -->
         <div id="errorContainer">
             <!-- Error message element -->
@@ -63,7 +62,11 @@
         </div>
     </div>
 
-    <!-- Script element with 'defer' attribute to include external JavaScript file -->
-    <script defer src="DN-form.js"></script>
+    <!-- Include Angular scripts (Angular 2 and above) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0/angular.min.js"></script>
+
+    <!-- Include Angular controller script -->
+    <script defer src="C:\Users\Jack\Coding Projects\DN form\DN-form.ts"></script>
 </body>
+
 </html>

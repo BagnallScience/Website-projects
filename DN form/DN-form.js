@@ -24,8 +24,9 @@ form.addEventListener('submit', function (e) {
     }
 
     // Card validation using Luhn's Algorithm
-    if (!luhnAlgorithm(card.value.trim())) {
-        messages.push("Invalid credit card number. Please use only numbers and spaces.");
+    const cardValue = card.value.replace(/\s/g, ''); // Remove spaces from the card number
+    if (!luhnAlgorithm(cardValue) || !isValidCardNumber(cardValue)) {
+        messages.push("Invalid credit card number. Please use only numbers and spaces, and ensure the value is greater than 0.");
         validateCard(); // Validate and update color
     }
 
@@ -38,7 +39,7 @@ form.addEventListener('submit', function (e) {
         // Example: name.focus();
     } else {
         // Form data is valid, construct the mailto link and submit
-        const mailtoLink = 'mailto:jackbagnall0960@gmail.com'
+        const mailtoLink = 'mailto:test@dn-uk.com'
             + '?subject=' + encodeURIComponent('Form Submission')
             + '&body=' + encodeURIComponent(
                 'Name: ' + name.value.trim() + '\n' +
@@ -53,6 +54,9 @@ form.addEventListener('submit', function (e) {
 
 // Luhn's Algorithm for credit card validation
 function luhnAlgorithm(cardNumber) {
+    // Remove spaces from the card number
+    cardNumber = cardNumber.replace(/\s/g, '');
+
     // Reverse the card number and convert each character to a number
     var reversedDigits = cardNumber.split("").reverse().map(Number);
 
@@ -75,35 +79,43 @@ function luhnAlgorithm(cardNumber) {
     return sum % 10 === 0;
 }
 
+// Check if the card number is greater than 0
+function isValidCardNumber(cardNumber) {
+    return parseInt(cardNumber, 10) > 0;
+}
+
 function validateName() {
     const nameParts = name.value.trim().split(' ');
-    const isValid = nameParts.length >= 2;
+    const hasFirstAndLastName = nameParts.length >= 2;
+    const containsInitials = nameParts.some(part => part.length === 1);
+    const isValid = hasFirstAndLastName && !containsInitials;
+
     updateFieldStatus(name, isValid);
-    displayErrorMessage(isValid ? '' : 'First and Last names are required.');
+    displayErrorMessage(isValid ? '' : 'Please enter both your first and last name without using initials.');
 }
 
 function validateEmail() {
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
     updateFieldStatus(email, isValid);
-    displayErrorMessage(isValid ? '' : 'Invalid email address.');
+    displayErrorMessage(isValid ? '' : 'Please enter a valid Email address.');
 }
 
 function validateCard() {
     const cardValue = card.value.trim();
-    const isValid = cardValue !== '' && luhnAlgorithm(cardValue);
+    const isValid = cardValue !== '' && luhnAlgorithm(cardValue) && isValidCardNumber(cardValue);
     updateFieldStatus(card, isValid);
-    displayErrorMessage(isValid ? '' : 'Invalid credit card number.');
+    displayErrorMessage(isValid ? '' : 'Please enter a valid credit card number.');
 }
 
 function updateFieldStatus(field, isValid) {
     if (isValid) {
         field.classList.remove('invalid');
         field.classList.add('valid');
-        field.style.backgroundColor = 'lightgreen';
+        field.style.backgroundColor = 'rgb(137, 200, 46)';
     } else {
         field.classList.remove('valid');
         field.classList.add('invalid');
-        field.style.backgroundColor = 'lightcoral';
+        field.style.backgroundColor = 'rgb(231, 0, 100)';
     }
 }
 

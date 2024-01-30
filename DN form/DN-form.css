@@ -26,7 +26,7 @@ body {
     text-align: center;
     padding: -10px; /* Negative padding may not have the desired effect */
     padding-top: 20px;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 /* Styling for form elements */
@@ -50,7 +50,7 @@ button {
 
 /* Styling for button hover state */
 button[type="submit"]:hover {
-    background-color: rgb(219, 112, 158);
+    background-color: rgb(151, 84, 113);
     color: white;
     cursor: pointer;
 }
@@ -80,14 +80,14 @@ label {
 
 /* Styling for valid input fields */
 input.valid {
-    border-color: green;
+    border-color: rgb(137, 200, 46);
     background-color: lightgreen;
 }
 
 /* Styling for invalid input fields */
 input.invalid {
-    border-color: pink;
-    background-color: lightcoral;
+    border-color: #ffc0cb;
+    background-color: rgb(231, 0, 100);
 }
 
 /* Container for error messages */
@@ -98,13 +98,13 @@ input.invalid {
 /* Styling for error messages */
 #errorContainer .error-message {
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   position: absolute;
   top: 50%; /* Center vertically */
   left: 100%; /* Position to the right of the form */
   transform: translateY(-50%); /* Center vertically */
-  background-color: lightcoral;
+  background-color: rgb(231, 0, 100);
   padding: 5px;
   border: 1px solid white;
   opacity: 0;
