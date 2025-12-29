@@ -1,153 +1,234 @@
-const remedies = [
-  {
-    title: "Sleep Ritual: Night Tea + Warm Feet",
-    category: "sleep",
-    time: "10 min",
-    summary: "A simple routine to signal “lights out” to your nervous system.",
-    steps: ["Brew caffeine-free herbs", "Warm socks or foot soak", "Dim lights + slow breathing"]
-  },
-  {
-    title: "Stress Reset: 4–6 Breathing + Tincture",
-    category: "stress",
-    time: "5 min",
-    summary: "Quick calm for busy days with breath + a consistent herbal routine.",
-    steps: ["Inhale 4, exhale 6 (x8)", "Sip water", "Optional: calming tincture as directed"]
-  },
-  {
-    title: "Digestive Ease: After-Meal Tea",
-    category: "digestion",
-    time: "15 min",
-    summary: "Gentle support after heavy meals (think: cozy, not harsh).",
-    steps: ["Steep herbs 7–10 min", "Sip slowly", "Short walk if you can"]
-  },
-  {
-    title: "Skin Comfort: Simple Salve Routine",
-    category: "skin",
-    time: "3 min",
-    summary: "Lock in moisture and soothe dry patches with a consistent approach.",
-    steps: ["Warm salve between fingers", "Apply to damp skin", "Repeat nightly for a week"]
-  },
-  {
-    title: "Seasonal Support: Steam + Honey Tea",
-    category: "seasonal",
-    time: "12 min",
-    summary: "A comforting combo for dry air and scratchy days.",
-    steps: ["Warm steam bowl (careful!)", "Honey + lemon tea", "Rest your voice"]
-  },
-  {
-    title: "Grounding: Five Senses Check-In",
-    category: "stress",
-    time: "4 min",
-    summary: "A fast way to come back to your body when you’re spiraling.",
-    steps: ["Name 5 things you see", "4 you feel", "3 you hear", "2 you smell", "1 you taste"]
-  }
-];
+// script.js
+(() => {
+  // ====== CONFIG ======
+  // Replace with your real Etsy shop link:
+  const ETSY_SHOP_URL = "https://www.etsy.com/shop/YOURSHOPNAME";
 
-const remedyGrid = document.getElementById("remedyGrid");
-const searchInput = document.getElementById("searchInput");
-const chips = document.querySelectorAll(".chip");
-const yearEl = document.getElementById("year");
-const toast = document.getElementById("toast");
+  // Stats (display only — keep truthful to your store data)
+  const STORE_STATS = {
+    totalSalesLabel: "2.5k+ sales",
+    etsyRatingLabel: "5.0 on Etsy",
+    etsyReviewsLabel: "700+ Etsy reviews",
+  };
 
-yearEl.textContent = new Date().getFullYear();
+  // ====== DOM HELPERS ======
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-let activeFilter = "all";
+  // ====== HEADER NAV (mobile) ======
+  const navToggle = $("#navToggle");
+  const navMenu = $("#navMenu");
 
-function renderRemedies(list) {
-  remedyGrid.innerHTML = "";
-  if (!list.length) {
-    remedyGrid.innerHTML = `
-      <div class="card" style="grid-column: 1 / -1;">
-        <h3>No matches found</h3>
-        <p class="muted">Try a different keyword or category.</p>
-      </div>`;
-    return;
+  function closeNav() {
+    if (!navMenu) return;
+    navMenu.classList.remove("is-open");
+    navToggle?.setAttribute("aria-expanded", "false");
   }
 
-  list.forEach((r) => {
-    const el = document.createElement("article");
-    el.className = "card";
-    el.innerHTML = `
-      <h3>${r.title}</h3>
-      <p class="muted">${r.summary}</p>
+  function toggleNav() {
+    if (!navMenu || !navToggle) return;
+    const isOpen = navMenu.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  }
 
-      <div class="card-meta">
-        <span class="badge">${capitalize(r.category)}</span>
-        <span class="muted">${r.time}</span>
-      </div>
+  navToggle?.addEventListener("click", toggleNav);
 
-      <details style="margin-top:12px;">
-        <summary style="font-weight:800; cursor:pointer;">Steps</summary>
-        <ol style="color:var(--muted); padding-left:18px; margin:10px 0 0;">
-          ${r.steps.map(s => `<li>${s}</li>`).join("")}
-        </ol>
-      </details>
-    `;
-    remedyGrid.appendChild(el);
-  });
-}
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function applyFilters() {
-  const q = (searchInput.value || "").trim().toLowerCase();
-
-  const filtered = remedies.filter((r) => {
-    const matchesCategory = activeFilter === "all" || r.category === activeFilter;
-    const haystack = (r.title + " " + r.summary + " " + r.steps.join(" ")).toLowerCase();
-    const matchesQuery = !q || haystack.includes(q);
-    return matchesCategory && matchesQuery;
+  // Close on link click (mobile)
+  $$("#navMenu a").forEach(a => {
+    a.addEventListener("click", () => closeNav());
   });
 
-  renderRemedies(filtered);
-}
-
-chips.forEach((chip) => {
-  chip.addEventListener("click", () => {
-    chips.forEach(c => c.classList.remove("is-active"));
-    chip.classList.add("is-active");
-    activeFilter = chip.dataset.filter;
-    applyFilters();
+  // Close on outside click
+  document.addEventListener("click", (e) => {
+    if (!navMenu || !navToggle) return;
+    const target = e.target;
+    const clickedInside = navMenu.contains(target) || navToggle.contains(target);
+    if (!clickedInside) closeNav();
   });
-});
 
-searchInput.addEventListener("input", applyFilters);
+  // ====== YEAR ======
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-// Mobile menu
-const navToggle = document.getElementById("navToggle");
-const navMenu = document.getElementById("navMenu");
+  // ====== ETSY LINKS ======
+  const etsyLinks = [$("#etsyLinkTop"), $("#etsyLinkShop"), $("#etsyLinkFooter")].filter(Boolean);
+  etsyLinks.forEach(a => a.setAttribute("href", ETSY_SHOP_URL));
 
-navToggle?.addEventListener("click", () => {
-  const open = navMenu.classList.toggle("is-open");
-  navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-});
+  // ====== TOAST ======
+  const toast = $("#toast");
+  let toastTimer = null;
 
-// Toasts (demo cart)
-document.querySelectorAll("[data-toast]").forEach(btn => {
-  btn.addEventListener("click", () => showToast(btn.dataset.toast));
-});
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2400);
+  }
 
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add("show");
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
-}
+  // Buttons with data-toast
+  $$("[data-toast]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const msg = btn.getAttribute("data-toast") || "Done!";
+      showToast(msg);
+    });
+  });
 
-// Forms (demo success)
-document.getElementById("newsletterForm")?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  showToast("Subscribed! (demo)");
-  e.target.reset();
-});
+  // ====== REMEDY LIBRARY DATA ======
+  const remedies = [
+    {
+      id: "sleep-soothe",
+      title: "Sleep & Soothe Night Tea",
+      category: "sleep",
+      time: "10 min",
+      blurb: "A simple caffeine-free ritual for softer nights.",
+      tags: ["tea", "evening", "routine"],
+    },
+    {
+      id: "calm-breath",
+      title: "Calm-in-a-Cup Breath Ritual",
+      category: "stress",
+      time: "3 min",
+      blurb: "A tiny reset for tense shoulders and busy brains.",
+      tags: ["ritual", "breath", "grounding"],
+    },
+    {
+      id: "ginger-digest",
+      title: "Ginger + Warm Water for Digestion",
+      category: "digestion",
+      time: "5 min",
+      blurb: "A cozy classic for after-meal comfort.",
+      tags: ["warming", "simple", "kitchen"],
+    },
+    {
+      id: "oat-salve",
+      title: "Oat + Honey Soothing Mask",
+      category: "skin",
+      time: "12 min",
+      blurb: "Softens cranky skin with pantry-friendly ingredients.",
+      tags: ["soothing", "gentle", "topical"],
+    },
+    {
+      id: "seasonal-steam",
+      title: "Seasonal Steam Bowl",
+      category: "seasonal",
+      time: "8 min",
+      blurb: "A comforting steam ritual for seasonal shifts.",
+      tags: ["steam", "cozy", "reset"],
+    },
+    {
+      id: "lavender-winddown",
+      title: "Lavender Wind-Down Routine",
+      category: "sleep",
+      time: "15 min",
+      blurb: "A low-effort nightly rhythm you’ll actually keep.",
+      tags: ["lavender", "bath", "sleep"],
+    },
+  ];
 
-document.getElementById("contactForm")?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  showToast("Message sent! (demo)");
-  e.target.reset();
-});
+  const remedyGrid = $("#remedyGrid");
+  const searchInput = $("#searchInput");
+  const chipButtons = $$(".chip");
 
-// Initial render
-renderRemedies(remedies);
+  let activeFilter = "all";
+  let searchTerm = "";
+
+  function remedyMatches(remedy) {
+    const inCategory = activeFilter === "all" || remedy.category === activeFilter;
+    if (!inCategory) return false;
+
+    if (!searchTerm) return true;
+    const hay = [
+      remedy.title,
+      remedy.category,
+      remedy.blurb,
+      ...(remedy.tags || []),
+    ].join(" ").toLowerCase();
+
+    return hay.includes(searchTerm.toLowerCase());
+  }
+
+  function renderRemedies() {
+    if (!remedyGrid) return;
+
+    const visible = remedies.filter(remedyMatches);
+
+    if (visible.length === 0) {
+      remedyGrid.innerHTML = `
+        <div class="card" style="grid-column: 1 / -1;">
+          <h3>No matches</h3>
+          <p>Try a different keyword or category.</p>
+          <div class="meta">
+            <span class="badge">Tip: search “tea”, “ritual”, “gentle”</span>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    remedyGrid.innerHTML = visible.map(r => {
+      const niceCat = r.category.charAt(0).toUpperCase() + r.category.slice(1);
+      return `
+        <article class="card" data-id="${r.id}">
+          <h3>${escapeHtml(r.title)}</h3>
+          <p>${escapeHtml(r.blurb)}</p>
+          <div class="meta">
+            <span class="badge">${escapeHtml(niceCat)}</span>
+            <span class="badge">${escapeHtml(r.time)}</span>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    // Demo: click a card => toast
+    $$(".card[data-id]", remedyGrid).forEach(card => {
+      card.addEventListener("click", () => {
+        const title = $("h3", card)?.textContent?.trim() || "Remedy";
+        showToast(`Opened: ${title} (demo)`);
+      });
+    });
+  }
+
+  function setActiveChip(filter) {
+    activeFilter = filter;
+    chipButtons.forEach(btn => {
+      btn.classList.toggle("is-active", btn.dataset.filter === filter);
+    });
+    renderRemedies();
+  }
+
+  chipButtons.forEach(btn => {
+    btn.addEventListener("click", () => setActiveChip(btn.dataset.filter || "all"));
+  });
+
+  searchInput?.addEventListener("input", (e) => {
+    searchTerm = e.target.value || "";
+    renderRemedies();
+  });
+
+  // ====== FORMS (demo submit) ======
+  $("#newsletterForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    showToast("Subscribed (demo)! ✨");
+    e.target.reset();
+  });
+
+  $("#contactForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    showToast("Message sent (demo)! We’ll get back to you soon.");
+    e.target.reset();
+  });
+
+  // ====== INITIAL RENDER ======
+  renderRemedies();
+
+  // ====== SAFETY: small HTML escape helper ======
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+})();
