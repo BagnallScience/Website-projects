@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -64,6 +65,16 @@
             <div class="pill">🖤 Witchy, not woo-woo</div>
           </div>
 
+          <!-- NEW: proof row -->
+          <div class="trust-row trust-row--proof" aria-label="Shop proof">
+            <div class="pill">🛍️ 2.5k+ sales</div>
+            <div class="pill">⭐ 5.0 on Etsy</div>
+            <a class="pill pill-link" href="#" id="etsyLinkTop" target="_blank" rel="noopener">
+              🧾 700+ Etsy reviews
+            </a>
+          </div>
+          <p class="micro muted">Verified via Etsy shop history.</p>
+
           <p class="micro">
             <strong>Note:</strong> Information on this site is educational and not medical advice.
           </p>
@@ -72,7 +83,17 @@
         <div class="hero-card" role="img" aria-label="Featured apothecary card">
           <div class="hero-card-inner">
             <h2>Today’s featured remedy</h2>
-            <p class="hero-card-title">“Sleep & Soothe” Night Tea</p>
+            <p class="hero-card-title">“Sleep &amp; Soothe” Night Tea</p>
+
+            <!-- NEW: rating badge -->
+            <div class="rating-badge" aria-label="Etsy rating">
+              <span aria-hidden="true">⭐</span>
+              <strong>5.0</strong>
+              <span class="muted">on Etsy</span>
+              <span class="dot" aria-hidden="true">•</span>
+              <span class="muted">700+ reviews</span>
+            </div>
+
             <ul class="checklist">
               <li>Calming herbs + cozy ritual</li>
               <li>Gentle, caffeine-free blend</li>
@@ -120,10 +141,19 @@
           <p>Small-batch blends, ritual-friendly essentials, and giftable apothecary favorites.</p>
         </div>
 
+        <!-- NEW: proof callout -->
+        <div class="callout callout-proof" aria-label="Store stats">
+          <div>
+            <h3>Trusted by thousands of cozy witches</h3>
+            <p class="muted">2.5k+ sales • 5.0★ average on Etsy • 700+ customer reviews</p>
+          </div>
+          <a class="btn" href="#" id="etsyLinkShop" target="_blank" rel="noopener">View Etsy shop</a>
+        </div>
+
         <div class="grid products">
           <article class="product">
             <div class="product-top">
-              <h3>Sleep & Soothe Tea</h3>
+              <h3>Sleep &amp; Soothe Tea</h3>
               <span class="tag">Best seller</span>
             </div>
             <p class="muted">A calming evening blend for winding down.</p>
@@ -324,6 +354,7 @@
         <a href="#shop">Shop</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="#" id="etsyLinkFooter" target="_blank" rel="noopener" aria-label="Visit our Etsy shop">Etsy</a>
       </div>
     </div>
   </footer>
