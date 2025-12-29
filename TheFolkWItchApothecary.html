@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="The Folk Witch Apothecary — natural remedies, herbal blends, and practical folk wellness." />
+  <title>The Folk Witch Apothecary • Natural Remedies</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="The Folk Witch Apothecary Home">
+        <img class="brand-logo" src="assets/logo.png" alt="The Folk Witch Apothecary logo" />
+        <div class="brand-text">
+          <span class="brand-name">The Folk Witch Apothecary</span>
+          <span class="brand-tag">Natural remedies • Herbal blends • Folk wellness</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+          <span class="sr-only">Open menu</span>
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#remedies">Remedies</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#learn">Learn</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a class="btn btn-small" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Handcrafted • Small-batch • Plant-forward</p>
+          <h1>Natural remedies with old-world calm and modern clarity.</h1>
+          <p class="lead">
+            Herbal blends, tinctures, salves, and guides rooted in folk tradition—made to support everyday wellness.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#shop">Browse best sellers</a>
+            <a class="btn btn-ghost" href="#remedies">Explore remedy library</a>
+          </div>
+
+          <div class="trust-row" aria-label="Highlights">
+            <div class="pill">🌿 Herbal ingredients</div>
+            <div class="pill">✨ Simple rituals</div>
+            <div class="pill">🖤 Witchy, not woo-woo</div>
+          </div>
+
+          <p class="micro">
+            <strong>Note:</strong> Information on this site is educational and not medical advice.
+          </p>
+        </div>
+
+        <div class="hero-card" role="img" aria-label="Featured apothecary card">
+          <div class="hero-card-inner">
+            <h2>Today’s featured remedy</h2>
+            <p class="hero-card-title">“Sleep & Soothe” Night Tea</p>
+            <ul class="checklist">
+              <li>Calming herbs + cozy ritual</li>
+              <li>Gentle, caffeine-free blend</li>
+              <li>Perfect for evening wind-down</li>
+            </ul>
+            <a class="btn btn-small" href="#shop">See details</a>
+            <div class="ornament" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REMEDY LIBRARY -->
+    <section class="section" id="remedies">
+      <div class="container">
+        <div class="section-head">
+          <h2>Remedy Library</h2>
+          <p>Quick, practical guides you can actually use. Search by need or category.</p>
+        </div>
+
+        <div class="search-row">
+          <label class="sr-only" for="searchInput">Search remedies</label>
+          <input id="searchInput" class="input" type="search" placeholder="Search: sleep, stress, digestion, skin…" />
+          <div class="chips" role="listbox" aria-label="Categories">
+            <button class="chip is-active" data-filter="all" type="button">All</button>
+            <button class="chip" data-filter="sleep" type="button">Sleep</button>
+            <button class="chip" data-filter="stress" type="button">Stress</button>
+            <button class="chip" data-filter="digestion" type="button">Digestion</button>
+            <button class="chip" data-filter="skin" type="button">Skin</button>
+            <button class="chip" data-filter="seasonal" type="button">Seasonal</button>
+          </div>
+        </div>
+
+        <div class="grid cards" id="remedyGrid">
+          <!-- Cards populated by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section class="section section-alt" id="shop">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop</h2>
+          <p>Small-batch blends, ritual-friendly essentials, and giftable apothecary favorites.</p>
+        </div>
+
+        <div class="grid products">
+          <article class="product">
+            <div class="product-top">
+              <h3>Sleep & Soothe Tea</h3>
+              <span class="tag">Best seller</span>
+            </div>
+            <p class="muted">A calming evening blend for winding down.</p>
+            <ul class="bullets">
+              <li>Caffeine-free</li>
+              <li>Herbal, floral notes</li>
+              <li>Loose leaf or sachets</li>
+            </ul>
+            <div class="product-actions">
+              <button class="btn btn-small" type="button" data-toast="Added to cart (demo)!">Add to cart</button>
+              <a class="btn btn-small btn-ghost" href="#contact">Ask a question</a>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-top">
+              <h3>Calm Tincture</h3>
+              <span class="tag">New</span>
+            </div>
+            <p class="muted">A simple dropper blend for stressful days.</p>
+            <ul class="bullets">
+              <li>Easy dosing</li>
+              <li>Fast, portable</li>
+              <li>Made in small batches</li>
+            </ul>
+            <div class="product-actions">
+              <button class="btn btn-small" type="button" data-toast="Added to cart (demo)!">Add to cart</button>
+              <a class="btn btn-small btn-ghost" href="#learn">How to use</a>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-top">
+              <h3>Skin Salve</h3>
+              <span class="tag">Top rated</span>
+            </div>
+            <p class="muted">A rich balm for dry, cranky skin moments.</p>
+            <ul class="bullets">
+              <li>Thick + soothing</li>
+              <li>Great for hands</li>
+              <li>Herb-infused oils</li>
+            </ul>
+            <div class="product-actions">
+              <button class="btn btn-small" type="button" data-toast="Added to cart (demo)!">Add to cart</button>
+              <a class="btn btn-small btn-ghost" href="#contact">Ingredients</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout">
+          <div>
+            <h3>Want this connected to Shopify / Squarespace / Etsy?</h3>
+            <p class="muted">This template is ready to integrate—product cards can become real listings in minutes.</p>
+          </div>
+          <a class="btn" href="#contact">Tell me your platform</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARN -->
+    <section class="section" id="learn">
+      <div class="container">
+        <div class="section-head">
+          <h2>Learn</h2>
+          <p>Friendly education: herbs, rituals, safety basics, and how to build your home apothecary.</p>
+        </div>
+
+        <div class="grid learn">
+          <article class="learn-card">
+            <h3>Herbal safety 101</h3>
+            <p class="muted">Interactions, allergies, and when to skip a remedy.</p>
+            <a class="text-link" href="#contact">Request a printable guide →</a>
+          </article>
+          <article class="learn-card">
+            <h3>Beginner apothecary list</h3>
+            <p class="muted">Start small with a handful of versatile herbs.</p>
+            <a class="text-link" href="#contact">Get the starter list →</a>
+          </article>
+          <article class="learn-card">
+            <h3>Ritual without overwhelm</h3>
+            <p class="muted">Tiny daily rituals that actually stick.</p>
+            <a class="text-link" href="#contact">Share your goals →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section section-alt" id="about">
+      <div class="container about-grid">
+        <div>
+          <h2>About The Folk Witch Apothecary</h2>
+          <p class="lead">
+            We blend plant wisdom, cozy ritual, and grounded guidance—so natural care feels approachable.
+          </p>
+          <p class="muted">
+            This is where you can tell your story: your practice, your sourcing, your ethos, and what “folk witch”
+            means to you. Keep it warm, simple, and honest.
+          </p>
+
+          <div class="about-points">
+            <div class="pill">🌙 Night-friendly wellness</div>
+            <div class="pill">🧪 Small-batch process</div>
+            <div class="pill">🌿 Ingredient transparency</div>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h3>Newsletter: little spells for better days</h3>
+          <p class="muted">Monthly recipes, seasonal tips, and new releases.</p>
+
+          <form class="newsletter" id="newsletterForm">
+            <label class="sr-only" for="email">Email address</label>
+            <input class="input" id="email" type="email" placeholder="you@example.com" required />
+            <button class="btn btn-small" type="submit">Subscribe</button>
+          </form>
+          <p class="micro muted">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Questions about ingredients, custom blends, wholesale, or collaborations? Send a note.</p>
+        </div>
+
+        <div class="contact-grid">
+          <form class="contact-form" id="contactForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input class="input" id="name" name="name" autocomplete="name" required />
+            </div>
+
+            <div class="field">
+              <label for="contactEmail">Email</label>
+              <input class="input" id="contactEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select class="input" id="topic" name="topic">
+                <option>Product question</option>
+                <option>Custom blend</option>
+                <option>Wholesale</option>
+                <option>Collaboration</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field field-full">
+              <label for="message">Message</label>
+              <textarea class="input" id="message" name="message" rows="5" placeholder="Tell me what you’re looking for…" required></textarea>
+            </div>
+
+            <div class="field field-full">
+              <button class="btn" type="submit">Send message</button>
+              <p class="micro muted">This demo form shows a success message (no email is sent yet).</p>
+            </div>
+          </form>
+
+          <aside class="contact-aside">
+            <div class="aside-card">
+              <h3>Hours</h3>
+              <p class="muted">Mon–Fri • 10am–5pm</p>
+            </div>
+            <div class="aside-card">
+              <h3>Location</h3>
+              <p class="muted">Online apothecary • Ships nationwide (edit this)</p>
+            </div>
+            <div class="aside-card">
+              <h3>Social</h3>
+              <p class="muted">
+                Instagram / TikTok / Pinterest<br />
+                <span class="micro">(Add links here)</span>
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="disclaimer">
+          <p>
+            <strong>Disclaimer:</strong> Content is for educational purposes and is not intended to diagnose, treat, cure,
+            or prevent disease. Always consult a qualified healthcare professional for medical concerns.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> The Folk Witch Apothecary. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#remedies">Remedies</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
